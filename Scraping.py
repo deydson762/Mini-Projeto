@@ -233,10 +233,6 @@ def main():
         # Mostrar os 3 mais baratos
         print(f"\n=== Top 3 Mais Baratos ===")
         print(df.head(3)[['nome', 'preco', 'loja']].to_string(index=False))
-        
-        # Salvar em CSV
-        df.to_csv(f'ram_{gb}gb_kabum.csv', index=False, encoding='utf-8')
-        print(f"\nDados salvos em 'ram_{gb}gb_kabum.csv'")
     else:
         print("Nenhum produto encontrado.")
 
