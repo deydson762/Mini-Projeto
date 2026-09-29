@@ -181,19 +181,25 @@ def main():
     
     print("=== Comparador de Preços de RAM - Teste Kabum ===")
     
-    # Usar argumento de linha de comando ou valor padrão
+    # Usar argumento de linha de comando ou perguntar ao usuário
     if len(sys.argv) > 1:
         try:
             gb = int(sys.argv[1])
+            print(f"Buscando memórias RAM de {gb}GB...")
         except ValueError:
             print("Por favor, digite um número válido.")
             return
     else:
-        # Valor padrão para teste
-        gb = 8
-        print("Usando valor padrão: 8GB")
-        print("Para usar outro valor, execute: python Scraping.py <gb>")
-        print("Exemplo: python Scraping.py 16")
+        # Perguntar ao usuário
+        try:
+            gb = int(input("Digite a quantidade de GB da memória RAM (ex: 4, 8, 16, 32, 64): "))
+        except ValueError:
+            print("Por favor, digite um número válido.")
+            return
+        except (EOFError, KeyboardInterrupt):
+            # Se input falhar, usar valor padrão
+            gb = 8
+            print("Usando valor padrão: 8GB")
     
     print(f"\nBuscando memórias RAM de {gb}GB no Kabum...")
     produtos = buscar_ram_kabum(gb)
