@@ -1,38 +1,46 @@
-# Comparador de Preços de RAM
+# Comparador de Preços de RAM - Kabum
 
-Projeto de web scraping para buscar e comparar preços de memórias RAM em diferentes lojas online brasileiras.
+Projeto de web scraping para buscar e comparar preços de memórias RAM no Kabum.
 
-## Sites Rastreados
+## Site Rastreado
 
 - **Kabum** - https://www.kabum.com.br
-- **Terabyte** - https://www.terabyte.com.br
-- **Pichau** - https://www.pichau.com.br
 
 ## Funcionalidades
 
-- Buscar preços de RAM por quantidade (8GB, 16GB, 32GB, etc.)
-- Comparar preços entre os 3 sites
+- Buscar preços de RAM por quantidade (4GB, 8GB, 16GB, 32GB, 64GB, etc.)
 - Ordenar do mais barato ao mais caro
+- Exibir os 3 mais baratos
 - Exibir link para o produto
+- Filtrar apenas produtos de memória RAM
 
 ## Como Usar
 
-1. Instale as dependências:
+1. Ative o ambiente virtual:
+```bash
+venv\Scripts\activate
+```
+
+2. Instale as dependências (se necessário):
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Execute o script:
+3. Execute o script:
 ```bash
 python Scraping.py
 ```
 
-3. Informe a quantidade de RAM desejada quando solicitado
+Ou especifique a quantidade de GB:
+```bash
+python Scraping.py 16
+python Scraping.py 32
+```
 
 ## Dependências
 
-- requests - Para fazer requisições HTTP
-- beautifulsoup4 - Para parsear HTML
+- selenium - Para automação de navegador
+- webdriver-manager - Para gerenciar drivers do Chrome
 - pandas - Para organizar e exibir os dados
 
 ## Notas

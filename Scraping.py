@@ -175,7 +175,7 @@ def buscar_ram_kabum(gb):
 def main():
     import sys
     
-    print("=== Comparador de Preços de RAM - Teste Kabum ===")
+    print("=== Comparador de Preços de RAM - Kabum ===")
     
     # Usar argumento de linha de comando por padrão
     if len(sys.argv) > 1:
@@ -194,7 +194,6 @@ def main():
         print("Para usar outro valor, execute: python Scraping.py <quantidade_em_GB>")
         print("Exemplo: python Scraping.py 16")
     
-    print(f"\nBuscando memórias RAM de {gb}GB no site Kabum...")
     produtos = buscar_ram_kabum(gb)
     
     if produtos:
