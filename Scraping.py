@@ -30,7 +30,6 @@ def buscar_ram_kabum(gb):
         # Inicializar o driver do Chrome
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         
-        print(f"Acessando: {url}")
         driver.get(url)
         
         # Esperar a página carregar
@@ -53,17 +52,14 @@ def buscar_ram_kabum(gb):
             try:
                 elements = driver.find_elements(By.CSS_SELECTOR, selector)
                 if elements:
-                    print(f"Encontrados {len(elements)} produtos com seletor: {selector}")
                     product_elements = elements
                     break
             except:
                 continue
         
         if not product_elements:
-            print("Nenhum produto encontrado. Tentando encontrar links de produtos...")
             # Fallback: encontrar links que contenham '/produto/'
             links = driver.find_elements(By.CSS_SELECTOR, 'a[href*="/produto/"]')
-            print(f"Encontrados {len(links)} links de produtos")
             
             for link in links[:15]:  # Aumentar limite para 15
                 try:
@@ -181,27 +177,24 @@ def main():
     
     print("=== Comparador de Preços de RAM - Teste Kabum ===")
     
-    # Usar argumento de linha de comando ou perguntar ao usuário
+    # Usar argumento de linha de comando por padrão
     if len(sys.argv) > 1:
         try:
             gb = int(sys.argv[1])
             print(f"Buscando memórias RAM de {gb}GB...")
         except ValueError:
             print("Por favor, digite um número válido.")
+            print("Uso: python Scraping.py <quantidade_em_GB>")
+            print("Exemplo: python Scraping.py 8")
             return
     else:
-        # Perguntar ao usuário
-        try:
-            gb = int(input("Digite a quantidade de GB da memória RAM (ex: 4, 8, 16, 32, 64): "))
-        except ValueError:
-            print("Por favor, digite um número válido.")
-            return
-        except (EOFError, KeyboardInterrupt):
-            # Se input falhar, usar valor padrão
-            gb = 8
-            print("Usando valor padrão: 8GB")
+        # Se não tiver argumento, usar valor padrão
+        gb = 8
+        print("Usando valor padrão: 8GB")
+        print("Para usar outro valor, execute: python Scraping.py <quantidade_em_GB>")
+        print("Exemplo: python Scraping.py 16")
     
-    print(f"\nBuscando memórias RAM de {gb}GB no Kabum...")
+    print(f"\nBuscando memórias RAM de {gb}GB no site Kabum...")
     produtos = buscar_ram_kabum(gb)
     
     if produtos:
